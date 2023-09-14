@@ -1,12 +1,10 @@
 import React from 'react'
+import { Blog } from '../Components'
 
 const Home = () => {
     return (
         <div>
-            <h1>
-                MERN Blog App
-            </h1>
-
+            <Blog />
         </div>
     )
 }
