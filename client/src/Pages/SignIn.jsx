@@ -9,6 +9,8 @@ const SignIn = () => {
       <h1 className='text-2xl font-bold text-gray-500 mt-6'>Sign In</h1>
       <Form
         name="normal_login"
+        action='/login'
+        method='post'
         className="w-full h-full  p-6"
         initialValues={{ remember: true }}
       // onFinish={onFinish}
