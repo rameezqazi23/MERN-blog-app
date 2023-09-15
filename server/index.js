@@ -2,7 +2,9 @@ const express = require("express");
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const connectToMongoDb = require("./connection");
+const { connectToMongoDb } = require("./connection");
+const userRoute = require('./routes/user');
+
 
 
 //Middlewares
@@ -14,13 +16,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const PORT = 8000;
 
 
-connectToMongoDb('mongodb://localhost:27017/mern-blog')
+connectToMongoDb('mongodb://127.0.0.1:27017/mern-blog')
     .then(() => console.log("MongoDB Successfully Connected!"))
-    .catch(() => console.log("MongoDB connection error"))
+    .catch((err) => console.log("MongoDB connection error", err))
 
-app.post('/signup', (req, res) => {
-    const { fullName, email, password } = req.body
-    res.json({ UserInfo: { fullName, email, password } })
-})
+
+
+//Routes
+app.use("/", userRoute);
 
 app.listen(PORT, () => console.log("Server running on PORT: ", PORT))

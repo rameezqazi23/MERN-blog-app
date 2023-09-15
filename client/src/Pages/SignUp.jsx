@@ -11,10 +11,11 @@ const SignUp = () => {
 
   const handleForm = async (e) => {
     await fetch('http://localhost:8000/signup', {
+      mode: 'no-cors',
       method: 'POST',
       body: JSON.stringify({ fullName, email, password }),
       headers: {
-        "Content-type": "application/json"
+        "Content-Type": "application/json"
       },
     })
 

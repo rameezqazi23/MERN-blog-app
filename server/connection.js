@@ -5,4 +5,6 @@ const connectToMongoDb = async (url) => {
 
 }
 
-module.exports = connectToMongoDb;
+module.exports = {
+    connectToMongoDb
+};
