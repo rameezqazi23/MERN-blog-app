@@ -11,7 +11,7 @@ router.post("/signup", async (req, res) => {
         password
     })
 
-    return res.json("UserData ", userDoc)
+    res.json(userDoc)
 
 
 })
