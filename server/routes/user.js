@@ -5,13 +5,21 @@ const USER = require('../models/user');
 
 router.post("/signup", async (req, res) => {
     const { fullName, email, password } = req.body;
-    const userDoc = await USER.create({
-        fullName,
-        email,
-        password
-    })
 
-    res.json(userDoc)
+    try {
+        const userDoc = await USER.create({
+            fullName,
+            email,
+            password
+        })
+        res.json(userDoc)
+
+    } catch (error) {
+        console.log("User creation error ", error.message)
+        res.status(400).json(error.message)
+
+    }
+
 
 
 })

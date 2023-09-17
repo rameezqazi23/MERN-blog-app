@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Alert, Button, Checkbox, Form, Input } from 'antd';
 import { CustomButton } from '../Components';
 
 
@@ -9,15 +9,26 @@ const SignUp = () => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(false)
+
+  const onClose = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    console.log(e, 'I was closed.');
+  };
 
   const handleSubmit = async (e) => {
-    await fetch('http://localhost:8000/signup', {
+
+    const response = await fetch('http://localhost:8000/signup', {
       method: 'POST',
       body: JSON.stringify({ fullName, email, password }),
       headers: {
         "Content-Type": "application/json"
       },
     })
+    if (response.ok === false) {
+      setError("This user is already registered")
+    }
+    console.log(response)
+
 
     // const data = {
     //   fullName,
@@ -27,6 +38,8 @@ const SignUp = () => {
     // console.log("User Data==> ", data)
 
   }
+
+
 
   return (
 
@@ -66,6 +79,19 @@ const SignUp = () => {
     // </div>
 
     <div className='w-[350px] p-4 bg-slate-100 flex flex-col justify-center items-center mx-auto rounded-xl'>
+      {error && <Alert
+        message="Error Message"
+        showIcon
+        description={error}
+        closable
+        onClose={onClose}
+        type="error"
+        action={
+          <Button size="small" danger>
+            Detail
+          </Button>
+        }
+      />}
       <h1 className='text-2xl font-bold text-gray-500 mt-6'>Create Account</h1>
       <Form
         name="normal_login"
