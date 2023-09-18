@@ -11,9 +11,9 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false)
 
-  const onClose = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    console.log(e, 'I was closed.');
-  };
+  // const onClose = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  //   console.log(e, 'I was closed.');
+  // };
 
   const handleSubmit = async (e) => {
 
@@ -84,7 +84,7 @@ const SignUp = () => {
         showIcon
         description={error}
         closable
-        onClose={onClose}
+        // onClose={onClose}
         type="error"
         action={
           <Button size="small" danger>

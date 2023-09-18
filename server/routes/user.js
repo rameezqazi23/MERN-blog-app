@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
-
+const bcrypt = require('bcryptjs');
+const jwt = require("jsonwebtoken");
 const USER = require('../models/user');
+
+const salt = bcrypt.genSaltSync(10);
+const secretKey = "x636tg6x#$%#$%5ghvahgjh^^^%";
 
 router.post("/signup", async (req, res) => {
     const { fullName, email, password } = req.body;
@@ -10,7 +14,8 @@ router.post("/signup", async (req, res) => {
         const userDoc = await USER.create({
             fullName,
             email,
-            password
+            salt: salt,
+            password: bcrypt.hashSync(password, salt)
         })
         res.json(userDoc)
 
@@ -22,6 +27,31 @@ router.post("/signup", async (req, res) => {
 
 
 
+})
+
+
+//SignIn
+router.post("/signin", async (req, res) => {
+    const { email, password } = req.body;
+    const user = await USER.findOne({ email })
+    const checkPassword = bcrypt.compareSync(password, user.password);
+
+    if (checkPassword) {
+        const payload = {
+            _id: user._id,
+            email: user.email,
+            profileImageUrl: user.profileImageUrl,
+            fullName: user.fullName
+        }
+        jwt.sign(payload, secretKey, {}, (err, token) => {
+            if (err) throw err;
+
+            res.cookie("usertoken", token).json("ok")
+
+        })
+
+
+    }
 })
 
 
