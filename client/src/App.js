@@ -7,8 +7,8 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 function App() {
   return (
     <>
-      <Navbar />
       <Router>
+        <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/signin' element={<SignIn />} />

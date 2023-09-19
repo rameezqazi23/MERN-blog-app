@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const USER = require('../models/user');
 
+
 const salt = bcrypt.genSaltSync(10);
 const secretKey = "x636tg6x#$%#$%5ghvahgjh^^^%";
 
@@ -46,12 +47,27 @@ router.post("/signin", async (req, res) => {
         jwt.sign(payload, secretKey, {}, (err, token) => {
             if (err) throw err;
 
-            res.cookie("usertoken", token).json("ok")
+            res.cookie("token", token).json()
 
         })
 
 
     }
+})
+
+router.get("/profile", (req, res) => {
+
+    const { token } = req.cookies;
+    jwt.verify(token, secretKey, {}, (err, data) => {
+        if (err) throw err;
+
+        res.json(data)
+    })
+
+})
+
+router.post("/logout",(req,res)=>{
+    res.clearCookie("token").json("ok")
 })
 
 
