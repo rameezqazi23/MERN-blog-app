@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Navbar.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/userContext';
 
 
 
 const Navbar = () => {
-    const [userInfo, setUserInfo] = useState(null);
+    const { userInfo, setUserInfo } = useContext(UserContext)
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -15,7 +16,7 @@ const Navbar = () => {
 
         }).then((response) => {
             response.json().then((user) => {
-                setUserInfo(user.email)
+                setUserInfo(user)
 
             })
         })
@@ -41,7 +42,7 @@ const Navbar = () => {
                 <nav>
                     {userInfo && (
                         <>
-                            <a className='login'>Create Blog</a>
+                            <a href='/createpost' className='login'>Create Blog</a>
                             <a href='/signin' onClick={handleLogout} className='register'>Logout</a>
 
                         </>

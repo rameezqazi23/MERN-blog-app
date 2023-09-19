@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
 import { CustomButton } from '../Components';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/userContext';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
+
+  const { setUserInfo } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -23,7 +26,10 @@ const SignIn = () => {
     })
 
     if (response.ok) {
-      navigate('/')
+      response.json().then((user) => {
+        setUserInfo(user)
+        navigate('/')
+      })
 
     } else {
       alert("Wrong credentails")

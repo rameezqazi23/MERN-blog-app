@@ -47,7 +47,7 @@ router.post("/signin", async (req, res) => {
         jwt.sign(payload, secretKey, {}, (err, token) => {
             if (err) throw err;
 
-            res.cookie("token", token).json()
+            res.cookie("token", token).json(payload)
 
         })
 
@@ -66,7 +66,7 @@ router.get("/profile", (req, res) => {
 
 })
 
-router.post("/logout",(req,res)=>{
+router.post("/logout", (req, res) => {
     res.clearCookie("token").json("ok")
 })
 
