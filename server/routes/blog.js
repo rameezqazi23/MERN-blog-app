@@ -18,14 +18,14 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 
-// router.get("/createpost", (req, res) => {
-//     return res.json({
-//         user: req.body
-//     })
-// })
+router.get("/createpost", async (req, res) => {
+    const postData = await BLOG.find();
+    res.json(postData)
+
+})
 
 
-router.post('/createpost', upload.single("file"), async (req, res) => {
+router.post('/createpost', upload.single("coverImageUrl"), async (req, res) => {
     const { title, summary, postContent } = req.body
     try {
         const blog = await BLOG.create({

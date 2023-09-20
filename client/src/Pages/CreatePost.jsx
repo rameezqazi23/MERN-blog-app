@@ -32,17 +32,17 @@ const CreatePost = () => {
         data.set('title', title);
         data.set('summary', summary);
         data.set('postContent', postContent);
-        data.set('file', files[0])
+        data.set('coverImageUrl', files[0])
 
         // console.log(data)
 
         const response = await fetch("http://localhost:8000/createpost", {
             method: 'POST',
             body: data,
+            credentials:'include',
         })
         if(response.ok){
             navigate('/');
-        
         }
     }
 
