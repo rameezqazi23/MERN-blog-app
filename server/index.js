@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const { connectToMongoDb } = require("./connection");
 const userRoute = require('./routes/user');
+const blogRoute = require('./routes/blog');
 const jwt = require("jsonwebtoken");
 
 const cookieParser = require('cookie-parser')
@@ -32,6 +33,7 @@ connectToMongoDb('mongodb://127.0.0.1:27017/mern-blog')
 
 //Routes
 app.use("/", userRoute);
+app.use("/", blogRoute);
 
 // app.get("/profile", (req, res) => {
 
