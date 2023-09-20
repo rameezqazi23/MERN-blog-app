@@ -4,6 +4,7 @@ import { InboxOutlined, UploadOutlined } from '@ant-design/icons';
 import { Button, Form, Upload, } from 'antd';
 import { CustomButton } from '../Components';
 import 'react-quill/dist/quill.snow.css';
+import { useNavigate } from 'react-router-dom';
 
 // const { Option } = Select;
 
@@ -12,6 +13,8 @@ const CreatePost = () => {
     const [summary, setSummary] = useState('');
     const [postContent, setPostContent] = useState('');
     const [files, setFiles] = useState();
+
+    const navigate = useNavigate();
 
     // const normFile = (e) => {
     //     console.log('Upload event:', e);
@@ -37,7 +40,10 @@ const CreatePost = () => {
             method: 'POST',
             body: data,
         })
-        console.log("Create post data==>", response)
+        if(response.ok){
+            navigate('/');
+        
+        }
     }
 
 

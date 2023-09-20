@@ -32,31 +32,17 @@ connectToMongoDb('mongodb://127.0.0.1:27017/mern-blog')
 
 
 //Routes
+
+// app.get("/", (req, res) => {
+//     return res.json({
+//         user: req.user
+//     })
+// })
+
 app.use("/", userRoute);
 app.use("/", blogRoute);
 
-// app.get("/profile", (req, res) => {
 
-//     const { token } = req.cookies;
-//     jwt.verify(token, secretKey, {}, (err, data) => {
-//         if (err) throw err;
-
-//         res.json(data)
-//         console.log("Token secret data==>", data)
-//     })
-
-
-//     // try {
-//     //     return jwt.verify(token, secretKey, {}, (err, data) => {
-//     //         res.json(data);
-//     //     })
-
-//     // } catch (error) {
-//     //     return console.log(error.message)
-
-//     // }
-
-// })
 
 
 app.listen(PORT, () => console.log("Server running on PORT: ", PORT))
