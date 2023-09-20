@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require('cors');
+const path = require('path');
 const bodyParser = require('body-parser');
 const { connectToMongoDb } = require("./connection");
 const userRoute = require('./routes/user');
@@ -17,7 +18,7 @@ app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+app.use(express.static(path.resolve('./public')));
 
 const PORT = 8000;
 const secretKey = "x636tg6x#$%#$%5ghvahgjh^^^%";

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Alert, Button, Checkbox, Form, Input } from 'antd';
 import { CustomButton } from '../Components';
+import { useNavigate } from 'react-router-dom';
 
 
 const SignUp = () => {
@@ -10,6 +11,8 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false)
+
+  const navigate = useNavigate();
 
   // const onClose = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
   //   console.log(e, 'I was closed.');
@@ -24,18 +27,15 @@ const SignUp = () => {
         "Content-Type": "application/json"
       },
     })
+    if(response.ok){
+      navigate('/signin')
+
+    }
     if (response.ok === false) {
       setError("This user is already registered")
     }
     console.log(response)
 
-
-    // const data = {
-    //   fullName,
-    //   email,
-    //   password
-    // }
-    // console.log("User Data==> ", data)
 
   }
 
