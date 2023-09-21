@@ -1,7 +1,8 @@
 import React from 'react'
 import { format } from 'date-fns';
+import { Link } from 'react-router-dom';
 //flex sm:flex-row flex-col
-const Blog = ({ title, summary, postContent, coverImageUrl, createdAt, createdBy }) => {
+const Blog = ({ title, summary, postContent, coverImageUrl, createdAt, createdBy, _id }) => {
 
 
   return (
@@ -13,13 +14,17 @@ const Blog = ({ title, summary, postContent, coverImageUrl, createdAt, createdBy
             className='rounded-xl'
           />
         </div> */}
-        <div className='w-full h-full object-contain'>
-          <img src={`http://localhost:8000/${coverImageUrl}`} alt="blog"
-            className='rounded-xl'
-          />
+        <div className='object-contain'>
+          <Link to={`/full-post/${_id}`} className='cursor-pointer'>
+            <img src={`http://localhost:8000/${coverImageUrl}`} alt="blog"
+              className='rounded-xl'
+            />
+          </Link>
         </div>
         <div>
-          <h2 className='text-3xl text-gray-700 font-bold'>{title}</h2>
+          <Link to={`/full-post/${_id}`} className='cursor-pointer'>
+            <h2 className='text-3xl text-gray-700 font-bold'>{title}</h2>
+          </Link>
           <p className='text-sm font-semibold text-gray-600 mt-2'>
             <a href="/">{createdBy?.fullName}</a><br />
             <time className='font-normal text-gray-400 text-[12px]'>{format(new Date(createdAt), 'MMM d, yyyy HH:mm')}</time>
