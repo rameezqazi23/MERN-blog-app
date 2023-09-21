@@ -22,6 +22,14 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 
+router.get('/full-post/:id', async (req, res) => {
+    const blog = await BLOG.findById(req.params.id)
+        .populate('createdBy', ['fullName', 'email', 'profileImageUrl', 'createdAt'])
+        
+    console.log("blog==>", blog)
+    res.json(blog)
+})
+
 router.get("/createpost", async (req, res) => {
     const postData = await BLOG.find()
         .populate("createdBy", ['fullName', 'email'])
