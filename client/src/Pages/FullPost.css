@@ -1,24 +1,37 @@
-div.post-content h1 {
+div.post-content h1,
+h2,
+h3 {
   font-size: 30px;
   line-height: 36px;
 }
 
-div.post-content p {
+div.post-content p,
+ul,
+ol {
   line-height: 30px;
   font-size: 20px;
 }
 
+/* div.post-centent li,ol,ul{
+  content: ".";
+
+} */
+
 @media (max-width: 768px) {
-    div.post-cntent{
-        margin-left: 40px;
-        margin-right: 40px;
-    }
-  div.post-content h1 {
+  div.post-cntent {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+  div.post-content h1,
+  h2,
+  h3 {
     font-size: 23px;
     line-height: 22px;
   }
 
-  div.post-content p {
+  div.post-content p,
+  ul,
+  ol {
     line-height: 25px;
     font-size: 15px;
   }

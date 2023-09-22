@@ -7,23 +7,21 @@ const Blog = ({ title, summary, postContent, coverImageUrl, createdAt, createdBy
 
   return (
 
-    <div>
-      <div className='grid sm:grid-cols-2 grid-cols-1 gap-10 m-8'>
-        {/* <div className='w-full h-full object-contain'>
-          <img src="https://thumbs.dreamstime.com/b/travel-world-landmarks-background-blue-sky-46083021.jpg" alt="blog"
-            className='rounded-xl'
-          />
-        </div> */}
-        <div className='object-contain'>
+    <div className='w-full h-full my-6'>
+      
+      <div className='grid sm:grid-cols-2 grid-cols-1 gap-10 px-8'>
+
+        <div className='co'>
           <Link to={`/full-post/${_id}`} className='cursor-pointer'>
             <img src={`http://localhost:8000/${coverImageUrl}`} alt="blog"
-              className='rounded-xl'
+              className='w-full h-full object-contain rounded-xl'
             />
           </Link>
         </div>
+        
         <div>
           <Link to={`/full-post/${_id}`} className='cursor-pointer'>
-            <h2 className='sm:text-3xl text-lg text-gray-700 font-bold'>{title}</h2>
+            <h2 className='sm:text-xl md:text-2xl text-3xl text-gray-700 font-bold'>{title}</h2>
           </Link>
           <p className='text-sm font-semibold text-gray-600 mt-2'>
             <a href="/">{createdBy?.fullName}</a><br />
