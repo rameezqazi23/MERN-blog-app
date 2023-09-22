@@ -39,9 +39,9 @@ const CreatePost = () => {
         const response = await fetch("http://localhost:8000/createpost", {
             method: 'POST',
             body: data,
-            credentials:'include',
+            credentials: 'include',
         })
-        if(response.ok){
+        if (response.ok) {
             navigate('/');
         }
     }
@@ -78,9 +78,10 @@ const CreatePost = () => {
                             placeholder="Post Summary" />
                     </div>
 
-                    <div className="mb-4">
+                    <div className="w-full h-[300px] mb-8">
                         <label className="block font-semibold mb-1">Message</label>
                         <ReactQuill
+                            className='overflow-y-auto h-full'
                             value={postContent}
                             onChange={(postText) => setPostContent(postText)}
                         />
@@ -91,7 +92,6 @@ const CreatePost = () => {
                         <input type="file" id="coverImageUrl" name="coverImageUrl" className="w-full py-2 focus:outline-none" />
                     </div> */}
 
-                    <input type="file" onChange={(e) => setFiles(e.target.files)} />
 
 
 
@@ -114,13 +114,13 @@ const CreatePost = () => {
 
 
 
-
-
-
-                    <CustomButton
-                        title="Create Post"
-                        type='submit'
-                    />
+                    <div className='mt-8'>
+                        <input type="file" onChange={(e) => setFiles(e.target.files)} />
+                        <CustomButton
+                            title="Create Post"
+                            type='submit'
+                        />
+                    </div>
                 </form>
             </div>
         </div >
