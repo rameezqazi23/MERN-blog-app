@@ -36,6 +36,7 @@ router.get("/createpost", async (req, res) => {
 router.post('/createpost', upload.single("coverImageUrl"), async (req, res) => {
     const { title, summary, postContent } = req.body
     const { token } = req.cookies;
+
     jwt.verify(token, secretKey, {}, async (err, user) => {
         if (err) throw err;
         // res.json(data)
@@ -67,6 +68,13 @@ router.get('/full-post/:id', async (req, res) => {
         .populate("createdBy", ["fullName", "email", "profileImageUrl"])
     res.json(blog)
     console.log("blog==>", blog)
+})
+
+
+router.put('/full-post', upload.single("coverImageUrl"), async (req, res) => {
+    // if(req.files){
+          
+    // }
 })
 
 module.exports = router;

@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import loader from '../asset/loader.svg';
 import { format, formatISO9075 } from 'date-fns';
+import { TiEdit } from 'react-icons/ti';
 import './FullPost.css';
+import { UserContext } from '../context/userContext';
 
 
 const FullPost = () => {
     const [blogData, setBlogData] = useState({});
     const { id } = useParams();
-    console.log(id)
+    const { userInfo } = useContext(UserContext);
+    console.log("User Info ", userInfo)
+
     useEffect(() => {
         fetch(`http://localhost:8000/full-post/${id}`)
             .then((response) => {
@@ -23,7 +27,7 @@ const FullPost = () => {
     // console.log("creator==>", blogData?.createdAt)
     // const formateDate = new Date(blogData?.createdAt)
     // console.log("Date==>", formateDate)
-    const { createdAt,createdBy } = blogData
+    const { createdAt, createdBy } = blogData
 
 
 
@@ -61,6 +65,15 @@ const FullPost = () => {
                                 </time>
 
                             </div>
+
+                            <div className='flex justify-center '>
+                                {userInfo?._id === blogData.createdBy?._id && (
+                                    <Link to={`/edit-post/${blogData?._id}`} className='flex flex-row justify-center items-center text-xl font-semibold underline decoration-solid'>
+                                        Edit Post?<TiEdit className='w-[25px] h-[25px]' />
+                                    </Link>
+                                )}
+                            </div>
+
                             <div className='mt-6 justify-contain'>
                                 <img className='w-full h-full rounded-md object-cover' src={`http://localhost:8000/${blogData?.coverImageUrl}`} alt="cover" />
                             </div>
