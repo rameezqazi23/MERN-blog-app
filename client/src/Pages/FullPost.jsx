@@ -42,7 +42,7 @@ const FullPost = () => {
                     <div className='flex w-full h-full mt-6 justify-center items-center'>
                         <div className='flex flex-col w-[700px] px-4 h-screen mx-auto'>
                             <p className='text-4xl font-bold text-center'>{blogData?.title}</p>
-                            <div className='flex justify-center items-center mt-6 gap-2'>
+                            <div className='flex flex-col sm:flex-row justify-center items-center mt-6 gap-2'>
                                 <div className='flex justify-center items-center'>
                                     <div className='w-[82px] h-[80px] rounded-full flex justify-center items-center'>
                                         <img className='w-[60%] h-[60%] rounded-full' src='https://img.freepik.com/premium-vector/man-character_665280-46967.jpg?w=2000' alt="profile" />
@@ -54,19 +54,21 @@ const FullPost = () => {
                                     </p>
                                 </div>
 
+                                <div className='flex flex-row justify-center items-center gap-2'>
 
-                                <p className='font-bold text-xl text-gray-400 mb-2'>
-                                    .
-                                </p>
-                                <time className='text-center font-normal text-[15px] text-gray-500'>
-                                    {createdAt}
-                                    {/* {format(new Date(createdAt), 'MMMM d, yyyy')} */}
-                                    {/* {(new Date(createdAt)).toISOString().split('T')[0]} */}
-                                </time>
+                                    <p className='font-bold text-xl text-gray-400 mb-2 hidden sm:flex'>
+                                        .
+                                    </p>
+                                    <time className='text-center font-normal text-[15px] text-gray-500'>
+                                        {createdAt}
+                                        {/* {format(new Date(createdAt), 'MMMM d, yyyy')} */}
+                                        {/* {(new Date(createdAt)).toISOString().split('T')[0]} */}
+                                    </time>
+                                </div>
 
                             </div>
 
-                            <div className='flex justify-center '>
+                            <div className='flex justify-center items-center mt-4 '>
                                 {userInfo?._id === blogData.createdBy?._id && (
                                     <Link to={`/edit-post/${blogData?._id}`} className='flex flex-row justify-center items-center text-xl font-semibold underline decoration-solid'>
                                         Edit Post?<TiEdit className='w-[25px] h-[25px]' />

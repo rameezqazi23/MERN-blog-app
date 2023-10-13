@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import './Navbar.css';
+// import './Navbar.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/userContext';
 
@@ -36,27 +36,23 @@ const Navbar = () => {
 
 
     return (
-        <main>
-            <header>
-                <a href='/' className='logo'>BlogPulse</a>
-                <nav>
-                    {userInfo && (
-                        <>
-                            <a href='/createpost' className='login'>Create Blog</a>
-                            <a href='/signin' onClick={handleLogout} className='register'>Logout</a>
+        <nav className='w-full flex items-center py-5 top-0 z-20
+        backdrop-filter backdrop-blur-lg bg-opacity-70 bg-primary sm:px-16 px-6'>
+            <div className='flex w-full justify-between  items-center max-w-7xl mx-auto'>
+                <Link to='/' className='flex items-center gap-2'>
+                    <p className='text-gray-800 text-[28px] font-bold cursor-pointer'>BlogPulse</p>
+                </Link>
+                <div className='sm:flex flex-row gap-10'>
+                    <Link to='/createblog'>
+                        <p>CreteBlog</p>
+                    </Link>
+                    <Link to='/logout'>
+                        <p>Logout</p>
+                    </Link>
+                </div>
+            </div>
 
-                        </>
-                    )}
-                    {!userInfo && (
-                        <>
-                            <a href='/signin' className='login'>Login</a>
-                            <a href='/signup' className='register'>Register</a>
-
-                        </>
-                    )}
-                </nav>
-            </header>
-        </main>
+        </nav>
     )
 }
 
