@@ -42,14 +42,19 @@ const Navbar = () => {
                 <Link to='/' className='flex items-center gap-2'>
                     <p className='text-gray-800 text-[28px] font-bold cursor-pointer'>BlogPulse</p>
                 </Link>
-                <div className='sm:flex flex-row gap-10'>
-                    <Link to='/createblog'>
-                        <p>CreteBlog</p>
-                    </Link>
-                    <Link to='/logout'>
-                        <p>Logout</p>
-                    </Link>
-                </div>
+                {userInfo ? (
+                    <div className='sm:flex flex-row gap-10'>
+                        <Link to='/createpost'>
+                            <p>CreteBlog</p>
+                        </Link>
+                        <Link to='/logout'>
+                            <p>Logout</p>
+                        </Link>
+                    </div>
+
+                ) : (
+                    <div>Hello</div>
+                )}
             </div>
 
         </nav>
