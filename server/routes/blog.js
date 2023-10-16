@@ -84,9 +84,8 @@ router.put('/full-post', upload.single("coverImageUrl"), (req, res) => {
             res.status(400).json("Invalid Author")
             throw "Invalid Author"
         }
-        await postDoc.updateOne({title, summary, postContent})
+        await postDoc.updateOne({ title, summary, postContent })
         res.json(postDoc)
-
     })
 })
 

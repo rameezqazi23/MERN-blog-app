@@ -39,14 +39,15 @@ const EditPost = () => {
             data.set('coverImageUrl', files?.[0])
         }
 
-        const response = fetch(`http://localhost:8000/full-post`, {
+        await fetch(`http://localhost:8000/full-post`, {
             method: 'PUT',
             body: data,
             credentials: 'include',
-        })
-        if (response.ok) {
-            navigate(`/full-post/${id}`)
-        }
+        }).then(navigate(`/full-post/${id}`))
+
+        // if (response.ok) {
+        //     navigate(`/full-post`)
+        // }
 
     }
 
