@@ -45,15 +45,22 @@ const Navbar = () => {
                 {userInfo ? (
                     <div className='sm:flex flex-row gap-10'>
                         <Link to='/createpost'>
-                            <p>CreteBlog</p>
+                            <p className='text-gray-500 hover:text-[black] font-medium text-[18px] cursor-pointer'>CreteBlog</p>
                         </Link>
-                        <Link to='/logout'>
-                            <p>Logout</p>
+                        <Link onClick={handleLogout} to='/logout'>
+                            <p className='text-gray-500 hover:text-[black] font-medium text-[18px] cursor-pointer'>Logout</p>
                         </Link>
                     </div>
 
                 ) : (
-                    <div>Hello</div>
+                    <div className='sm:flex flex-row gap-10'>
+                        <Link to='/signin'>
+                            <p className='text-gray-500 hover:text-[black] font-medium text-[18px] cursor-pointer'>SignIn</p>
+                        </Link>
+                        <Link to='/signup'>
+                            <p className='text-gray-500 hover:text-[black] font-medium text-[18px] cursor-pointer'>Signup</p>
+                        </Link>
+                    </div>
                 )}
             </div>
 
