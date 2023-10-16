@@ -12,7 +12,6 @@ const EditPost = () => {
 
     const navigate = useNavigate();
 
-
     useEffect(() => {
         fetch(`http://localhost:8000/full-post/${id}`)
             .then((response) => {
@@ -34,6 +33,7 @@ const EditPost = () => {
         data.set('title', title);
         data.set('summary', summary);
         data.set('postContent', postContent);
+        data.set('id', id)
 
         if (files?.[0]) {
             data.set('coverImageUrl', files?.[0])
@@ -42,7 +42,7 @@ const EditPost = () => {
         const response = fetch(`http://localhost:8000/full-post`, {
             method: 'PUT',
             body: data,
-            credentials:'include',
+            credentials: 'include',
         })
         if (response.ok) {
             navigate(`/full-post/${id}`)

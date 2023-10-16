@@ -17,11 +17,10 @@ const storage = multer.diskStorage({
         const fileName = `${Date.now()}-${file.originalname}`
         return cb(null, fileName)
     }
+
 })
 
 const upload = multer({ storage: storage })
-
-
 
 router.get("/createpost", async (req, res) => {
 
@@ -71,10 +70,24 @@ router.get('/full-post/:id', async (req, res) => {
 })
 
 
-router.put('/full-post', upload.single("coverImageUrl"), async (req, res) => {
-    // if(req.files){
-          
-    // }
+router.put('/full-post', upload.single("coverImageUrl"), (req, res) => {
+
+    const { token } = req.cookies
+    jwt.verify(token, secretKey, {}, async (error, data) => {
+        if (error) throw error;
+
+        const { id, title, summary, postContent } = req.body;
+        const postDoc = await BLOG.findById(id)
+        const isAuthor = JSON.stringify(postDoc.createdBy) === JSON.stringify(data._id)
+        // res.json({ data, postDoc, isAuthor })
+        if (!isAuthor) {
+            res.status(400).json("Invalid Author")
+            throw "Invalid Author"
+        }
+        await postDoc.updateOne({title, summary, postContent})
+        res.json(postDoc)
+
+    })
 })
 
 module.exports = router;
