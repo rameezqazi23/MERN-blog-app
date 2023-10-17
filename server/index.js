@@ -7,6 +7,7 @@ const { connectToMongoDb } = require("./connection");
 const userRoute = require('./routes/user');
 const blogRoute = require('./routes/blog');
 const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv");
 
 const cookieParser = require('cookie-parser')
 // const USER = require("./models/user");
@@ -21,11 +22,12 @@ app.use(cookieParser());
 app.use(express.static(path.resolve('./public')));
 
 const PORT = 8000;
-const secretKey = "x636tg6x#$%#$%5ghvahgjh^^^%";
+dotenv.config();
+
+const secretKey = process.env.SECRET_KEY;
 
 
-
-connectToMongoDb('mongodb://127.0.0.1:27017/mern-blog')
+connectToMongoDb(process.env.MONGODB_URL)
     .then(() => console.log("MongoDB Successfully Connected!"))
     .catch((err) => console.log("MongoDB connection error", err))
 

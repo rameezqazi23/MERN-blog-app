@@ -3,10 +3,11 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const USER = require('../models/user');
+const dotenv = require("dotenv");
 
-
+dotenv.config();
 const salt = bcrypt.genSaltSync(10);
-const secretKey = "x636tg6x#$%#$%5ghvahgjh^^^%";
+const secretKey = process.env.SECRET_KEY;
 
 router.post("/signup", async (req, res) => {
     const { fullName, email, password } = req.body;

@@ -43,7 +43,8 @@ const EditPost = () => {
             method: 'PUT',
             body: data,
             credentials: 'include',
-        }).then(navigate(`/full-post/${id}`))
+        })
+            .then(navigate(`/full-post/${id}`))
 
         // if (response.ok) {
         //     navigate(`/full-post`)
