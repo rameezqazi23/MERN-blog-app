@@ -34,13 +34,6 @@ connectToMongoDb(process.env.MONGODB_URL)
 
 
 
-//Routes
-
-// app.get("/", (req, res) => {
-//     return res.json({
-//         user: req.user
-//     })
-// })
 
 app.use("/", userRoute);
 app.use("/", blogRoute);
