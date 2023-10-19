@@ -33,7 +33,9 @@ connectToMongoDb(process.env.MONGODB_URL)
 
 
 
-
+app.get("/",(req,res)=>{
+    res.send("MERN BLOG")
+})
 
 app.use("/", userRoute);
 app.use("/", blogRoute);

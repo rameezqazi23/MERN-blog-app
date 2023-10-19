@@ -48,8 +48,6 @@ router.post("/signin", async (req, res) => {
             res.cookie("token", token).json(payload)
 
         })
-
-
     }
 })
 
